@@ -12,7 +12,7 @@ while True:
             for item in todos:
                 print(item)
         case 'edit':
-            number = int(input("Number of the to-do to edit: "))
+            number = int(input("Number of the to-do to edit: "))-1
             existing_todo=todos[number]
             print("You will edit: ", existing_todo)
             new_todo=input("new to-do: ")
