@@ -19,11 +19,11 @@ while True:
             new_todo = input("new to-do: ")
             todos[number] = new_todo
         case 'complete':
-            number = int (input("Number of the completed to-do: "))
+            number = int(input("Number of the completed to-do: "))
             print("You will remove ", todos[number], "from the list.")
             confirm = input("Proceed? (y/n)")
             match confirm:
-                case "y"|"yes"|"1":
+                case "y" | "yes" | "1":
                     todos.pop(number)
         case 'exit':
             break
