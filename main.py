@@ -17,12 +17,28 @@ while True:
     elif user_action.lower().strip() == 'show':
         with open('todo.txt', 'r') as file:
             print(file.read())
-    elif user_action.startswith('edit'):
-        number = int(input("Number of the to-do to edit: "))
+    elif user_action.lower().startswith('edit'):
+        # find out what we're editing
+        if len(user_action) > 5:
+            number = int(user_action[5:])
+        else:
+            number = int(input("Number of the to-do to edit: "))
+        with open("todo.txt", "r") as file:
+            todos = file.readlines()
         existing_todo = todos[number]
-        print("You will edit: ", existing_todo)
-        new_todo = input("new to-do: ")
-        todos[number] = new_todo
+        confirmation = input(f"You will edit: {existing_todo}. Continue? (y/n)")
+        try:
+            if confirmation == "y" or confirmation == "yes" or confirmation == 1:
+                new_todo = input("new to-do: ")
+                todos[number] = new_todo + "\n"
+                with open('todo.txt', 'w') as file:
+                    file.writelines(todos)
+            elif confirmation == "n" or confirmation == "no" or confirmation == 0:
+                print("Understood. No changes were made.")
+                continue
+        except:
+            print("You entered an unexpected command. No action was taken")
+            continue
     elif user_action.startswith('complete'):
         number = int(input("Number of the completed to-do: "))
         print("You will remove ", todos[number], "from the list.")
