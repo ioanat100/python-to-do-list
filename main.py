@@ -16,7 +16,9 @@ while True:
             file.writelines(todos)
     elif user_action.lower().strip() == 'show':
         with open('todo.txt', 'r') as file:
-            print(file.read())
+            todos = file.readlines()
+        for i,todo in enumerate(todos):
+            print(f"{i+1}. {todo.strip()}")
     elif user_action.lower().startswith('edit'):
         # find out what we're editing
         if len(user_action) > 5:
