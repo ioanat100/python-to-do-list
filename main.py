@@ -27,7 +27,7 @@ while True:
             number = int(input("Number of the to-do to edit: "))
         with open("todo.txt", "r") as file:
             todos = file.readlines()
-        existing_todo = todos[number]
+        existing_todo = todos[number - 1]
         confirmation = input(f"You will edit: {existing_todo}. Continue? (y/n)")
         try:
             if confirmation == "y" or confirmation == "yes" or confirmation == 1:
@@ -43,11 +43,18 @@ while True:
             continue
     elif user_action.startswith('complete'):
         number = int(input("Number of the completed to-do: "))
-        print("You will remove ", todos[number], "from the list.")
+        with open('todo.txt','r') as file:
+            todos = file.readlines()
+        print("You will remove ", todos[number - 1], "from the list.")
         confirm = input("Proceed? (y/n)")
-        match confirm:
-            case "y" | "yes" | "1":
-                todos.pop(number)
+        if confirm == "y" or confirm == "yes" or confirm == "1":
+            todos.pop(number - 1)
+            with open('todo.txt', 'w') as file:
+                for todo in todos:
+                    file.writelines(todo)
+        else:
+            print("No action was taken")
+            continue
     elif user_action.startswith('exit'):
         break
     else:
