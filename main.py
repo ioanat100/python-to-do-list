@@ -43,7 +43,10 @@ while True:
             print("You entered an unexpected command. No action was taken")
             continue
     elif user_action.startswith('complete'):
-        number = int(input("Number of the completed to-do: "))
+        if len(user_action)>9:
+            number = int(user_action[9:])
+        else:
+            number = int(input("Number of the completed to-do: "))
         with open('todo.txt','r') as file:
             todos = file.readlines()
         print("You will remove ", todos[number - 1], "from the list.")
