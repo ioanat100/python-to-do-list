@@ -4,7 +4,7 @@ while True:
     user_action = input("Type add, show, edit, complete or exit: ")
     user_action = user_action.strip()
 
-    if user_action.startswith('add'):
+    if user_action.lower().startswith('add'):
         if len(user_action) > 4:
             todo = user_action[4:] + '\n'
         else:
