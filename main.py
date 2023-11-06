@@ -1,7 +1,8 @@
-def get_todos()
+def get_todos():
     with open('todo.txt', 'r') as file:
         todos = file.readlines()
-   return todos
+    return todos
+
 
 while True:
     user_action = input("Type add, show, edit, complete or exit: ")
@@ -12,14 +13,12 @@ while True:
             todo = user_action[4:] + '\n'
         else:
             todo = input("Enter a to-do: ") + "\n"
-        with open('todo.txt', 'r') as file:
-            todos = file.readlines()
+            todos = get_todos()
             todos.append(todo)
         with open('todo.txt', 'w') as file:
             file.writelines(todos)
     elif user_action.lower().strip() == 'show':
-        with open('todo.txt', 'r') as file:
-            todos = file.readlines()
+        todos = get_todos()
         for i, todo in enumerate(todos):
             print(f"{i+1}. {todo.strip()}")
     elif user_action.lower().startswith('edit'):
@@ -28,8 +27,7 @@ while True:
             number = int(user_action[5:])
         else:
             number = int(input("Number of the to-do to edit: "))
-        with open("todo.txt", "r") as file:
-            todos = file.readlines()
+        todos = get_todos()
         existing_todo = todos[number - 1]
         confirmation = input(f"You will edit: {existing_todo}. Continue? (y/n)")
         try:
@@ -50,8 +48,7 @@ while True:
             number = int(user_action[9:])
         else:
             number = int(input("Number of the completed to-do: "))
-        with open('todo.txt', 'r') as file:
-            todos = file.readlines()
+        todos = get_todos()
         print("You will remove ", todos[number - 1], "from the list.")
         confirm = input("Proceed? (y/n)")
         if confirm == "y" or confirm == "yes" or confirm == "1":
