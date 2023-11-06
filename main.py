@@ -32,9 +32,10 @@ while True:
         try:
             if confirmation == "y" or confirmation == "yes" or confirmation == 1:
                 new_todo = input("new to-do: ")
-                todos[number] = new_todo + "\n"
+                todos[number - 1] = new_todo + "\n"
                 with open('todo.txt', 'w') as file:
-                    file.writelines(todos)
+                    for todo in todos:
+                        file.writelines(todo)
             elif confirmation == "n" or confirmation == "no" or confirmation == 0:
                 print("Understood. No changes were made.")
                 continue
