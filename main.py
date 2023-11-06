@@ -17,7 +17,7 @@ while True:
     elif user_action.lower().strip() == 'show':
         with open('todo.txt', 'r') as file:
             todos = file.readlines()
-        for i,todo in enumerate(todos):
+        for i, todo in enumerate(todos):
             print(f"{i+1}. {todo.strip()}")
     elif user_action.lower().startswith('edit'):
         # find out what we're editing
@@ -43,11 +43,11 @@ while True:
             print("You entered an unexpected command. No action was taken")
             continue
     elif user_action.startswith('complete'):
-        if len(user_action)>9:
+        if len(user_action) > 9:
             number = int(user_action[9:])
         else:
             number = int(input("Number of the completed to-do: "))
-        with open('todo.txt','r') as file:
+        with open('todo.txt', 'r') as file:
             todos = file.readlines()
         print("You will remove ", todos[number - 1], "from the list.")
         confirm = input("Proceed? (y/n)")
