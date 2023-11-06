@@ -1,4 +1,7 @@
-todos = []
+def get_todos()
+    with open('todo.txt', 'r') as file:
+        todos = file.readlines()
+   return todos
 
 while True:
     user_action = input("Type add, show, edit, complete or exit: ")
