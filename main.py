@@ -14,10 +14,9 @@ while True:
             todos.append(todo)
         with open('todo.txt', 'w') as file:
             file.writelines(todos)
-    elif user_action.startswith('show'):
-        file = open('todo.txt', 'r')
-        print(file.read())
-        file.close()
+    elif user_action.lower().strip() == 'show':
+        with open('todo.txt', 'r') as file:
+            print(file.read())
     elif user_action.startswith('edit'):
         number = int(input("Number of the to-do to edit: "))
         existing_todo = todos[number]
